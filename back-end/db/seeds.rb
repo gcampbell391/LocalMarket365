@@ -11,7 +11,7 @@ store1 = Store.create(name: "Default Store", street_name: "123 Main  Street", ci
 
 puts "Creating Products..."
 ##Creates products array from fetch to airTable API
-productsUrl = RestClient.get "https://api.airtable.com/v0/app7VzwPsISTrqSwo/Veggie%20Bin?api_key=keycBsqGAp6H17DFl"
+productsUrl = RestClient.get "https://api.airtable.com/v0/app7VzwPsISTrqSwo/Veggie%20Bin?api_key=?"
 products_array = JSON.parse(productsUrl)
 count = 0
 products_array["records"].each do |product|
