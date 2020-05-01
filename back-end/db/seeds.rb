@@ -4,14 +4,17 @@ require 'json'
 
 Store.destroy_all
 Product.destroy_all
-
+api_key = ENV["API_KEY"]
 puts "happy"
+puts "API Key: " + api_key
 puts "Creating Store..."
 store1 = Store.create(name: "Default Store", street_name: "123 Main  Street", city: "Atlanta", state: "Georgia", zip: 30182, email: "store1@gmail.com", password: "123")
 
 puts "Creating Products..."
 ##Creates products array from fetch to airTable API
-productsUrl = RestClient.get "https://api.airtable.com/v0/app7VzwPsISTrqSwo/Veggie%20Bin?api_key=keycBsqGAp6H17DFl"
+
+productsUrl = RestClient.get "https://api.airtable.com/v0/app7VzwPsISTrqSwo/Veggie%20Bin?api_key=#{api_key}"
+>>>>>>> 8a377b8ddde94ac0bbc7515b7e35cade94c81e86
 products_array = JSON.parse(productsUrl)
 
 products_array["records"].each do |product|
