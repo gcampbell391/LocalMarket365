@@ -14,7 +14,7 @@ puts "Creating Products..."
 ##Creates products array from fetch to airTable API
 
 productsUrl = RestClient.get "https://api.airtable.com/v0/app7VzwPsISTrqSwo/Veggie%20Bin?api_key=#{api_key}"
->>>>>>> 8a377b8ddde94ac0bbc7515b7e35cade94c81e86
+
 products_array = JSON.parse(productsUrl)
 
 products_array["records"].each do |product|
