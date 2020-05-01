@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_215057) do
+ActiveRecord::Schema.define(version: 2020_05_01_033630) do
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "current"
+    t.boolean "completed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -20,20 +29,21 @@ ActiveRecord::Schema.define(version: 2020_04_30_215057) do
     t.string "category"
     t.string "category_type"
     t.string "brand"
-    t.integer "store_id"
+    t.integer "inventory_quantity"
+    t.integer "store_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "product_id", null: false
+    t.integer "product_id"
+    t.integer "order_id"
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_purchases_on_order_id"
     t.index ["product_id"], name: "index_purchases_on_product_id"
-    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -62,6 +72,5 @@ ActiveRecord::Schema.define(version: 2020_04_30_215057) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "purchases", "products"
-  add_foreign_key "purchases", "users"
+  add_foreign_key "products", "stores"
 end
