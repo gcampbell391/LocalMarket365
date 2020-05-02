@@ -19,10 +19,11 @@
 }
 
 .productCard{
+  text-align: center;
   flex: 1 0 21%;
   background-color: white;
   border-radius: 5px;
-  margin-left: 10px;
+  margin:4px;
   width:200px;
   border: 1px solid;
   padding: 10px;
@@ -34,6 +35,7 @@
 .productImg{
   margin-top: 10px;
 }
+
 .appLogo{
   float:left;
 }
@@ -53,6 +55,7 @@
   animation-iteration-count: .5;
 }
 .headerContainer{
+  text-align: center;
   background-color: #4A6EE2;
   padding-bottom: 30px;
 }
@@ -68,9 +71,7 @@ margin:auto
   color:white;
   text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.productCard{
-float:left
-}
+
 .cart{
   float:right;
   background-color: lightblue
@@ -81,6 +82,50 @@ float:left
  float:right ;
 }
 
+.backNextBtns{
+  font-size: 20px;
+  margin: 5px;
+  background-color: #4A6EE2;
+  color: white;
+}
+
+.backNextBtns:hover{
+  font-size: 20px;
+  margin: 5px;
+  background-color: white;
+  color: #4A6EE2;
+}
+
+.app_body{
+  text-align: center;
+}
+
+.productDetails{
+  margin-left: 600px;
+  margin-right: 100px;
+  border-radius: 5px;
+}
+
+.productDetailsCard{
+
+  border:1px solid;
+  box-shadow: 2px 2px 2px 2px #888888;
+  border-radius: 5px;
+}
+
+.backToProductsBtn{
+  font-size: 20px;
+  margin: 5px;
+  background-color: #4A6EE2;
+  color: white;
+}
+
+.backToProductsBtn:hover{
+  font-size: 20px;
+  margin: 5px;
+  background-color: white;
+  color: #4A6EE2;
+}
 
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }

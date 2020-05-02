@@ -9,12 +9,12 @@ const ProductsContainer = (props) => {
         <div className="productContainer">
             <div className="productContainerBox">
                 {allProducts.map(product => {
-                    return <ProductCard product={product} key={product.id} />
+                    return <ProductCard product={product} key={product.id} hanldeProductAddToCartBtn={props.hanldeProductAddToCartBtn} hanldleProductCardDetails={props.hanldleProductCardDetails} />
                 })}
 
                 {props.cartClicked && <Cart />}
             </div>
-            <button onClick={(event) => props.handlePageClick(event)}>Back</button><button onClick={(event) => props.handlePageClick(event)}>Next</button>
+            <button className="backNextBtns" onClick={(event) => props.handlePageClick(event)}>Back</button><button className="backNextBtns" onClick={(event) => props.handlePageClick(event)}>Next</button>
         </div>
     )
 }

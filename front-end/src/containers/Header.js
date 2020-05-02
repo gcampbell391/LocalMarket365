@@ -15,7 +15,7 @@ export default class Header extends Component {
             <div className="headerContainer">
                 <img className="appLogo" alt="Company Logo" />
                 <NavBar handleCartClick={this.props.handleCartClick} />
-                <Search />
+                <Search handleSearchTermChange={this.props.handleSearchTermChange} />
 
             </div>
         )
