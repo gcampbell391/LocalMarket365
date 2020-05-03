@@ -23,14 +23,15 @@
   flex: 1 0 21%;
   background-color: white;
   border-radius: 5px;
-  margin:4px;
-  width:200px;
-  border: 1px solid;
+  margin: 4px;
+  width: 200px;
+  border: .5px solid white ;
   padding: 10px;
-  box-shadow: 2px 2px #888888;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .productCard:hover {
-  transform: scale(1.1); 
+  transform: scale(1.07); 
 }
 .productImg{
   margin-top: 10px;
@@ -140,3 +141,6 @@ margin:auto
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+
+

@@ -8,7 +8,10 @@ export default class Home extends Component {
         allProducts: [],
         cartClicked: false,
         currentProductIndex: 0,
-        searchTerm: ""
+        searchTerm: "",
+        sort: "",
+        filter: [""]
+        
     }
 
     //Fetches all products and sets them to allProducts state variable 
@@ -25,10 +28,31 @@ export default class Home extends Component {
         this.setState({ cartClicked: !this.state.cartClicked })
     }
 
-    //Handles slice allproducts into specific return set and includes filter functionality for searchTerm
-    sliceProducts = () => {
-        let updatedProducts = this.state.allProducts.filter(product => { return product.name.toLowerCase().includes(this.state.searchTerm) })
-        return updatedProducts.slice(this.state.currentProductIndex, (this.state.currentProductIndex + 12))
+    // Handles slice allproducts into specific return set and includes filter functionality for searchTerm
+    // sliceProducts = () => {
+    //     let updatedProducts = this.state.allProducts.filter(product => { return product.name.toLowerCase().includes(this.state.searchTerm) })
+    //     return updatedProducts.slice(this.state.currentProductIndex, (this.state.currentProductIndex + 12))
+    // }
+
+    renderProducts = () => {
+        let rtnProducts = this.state.allProducts
+        if(this.state.searchTerm !== "" ){
+           let updatedProducts = rtnProducts.filter(product => { return product.name.toLowerCase().includes(this.state.searchTerm) })
+           rtnProducts = updatedProducts.slice(this.state.currentProductIndex, (this.state.currentProductIndex + 12))
+        }
+
+        if(this.state.filter!== "" ){
+
+            let newArray = []
+            rtnProducts.filter(product => { 
+            if(product.category.includes(this.state.filter)){
+                    newArray.push(product) 
+                }
+            })
+            rtnProducts = newArray
+        }
+
+        return rtnProducts
     }
 
     //Handles page click to render previous/next.....Needs Fix for if they go past 0
@@ -53,6 +77,22 @@ export default class Home extends Component {
         this.setState({ searchTerm: event.target.value })
     }
 
+    //Handles seting state for filtered radio buttons
+    handleCategoryFilter = (event) => {
+        if(this.state.filter == event.target.value){
+        this.setState({filter: ""})
+        event.target.checked =  !event.target.checked
+        console.log("fill in")
+
+        } else {
+        this.setState({filter: event.target.value})
+        event.target.checked =  !event.target.checked
+        console.log("Dont fill in")
+        }
+   
+
+    }
+
     render() {
         return (
             <div>
@@ -61,10 +101,11 @@ export default class Home extends Component {
                     handleSearchTermChange={this.handleSearchTermChange}
                 />
                 <Body
-                    allProducts={this.sliceProducts()}
+                    allProducts={this.renderProducts()}
                     cartClicked={this.state.cartClicked}
                     handlePageClick={this.handlePageClick}
                     hanldeProductAddToCartBtn={this.hanldeProductAddToCartBtn}
+                    handleCategoryFilter = {this.handleCategoryFilter}
                 />
             </div>
         )

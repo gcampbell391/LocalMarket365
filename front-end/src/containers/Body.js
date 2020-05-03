@@ -25,20 +25,20 @@ export default class Body extends Component {
         return (
             <div className="app_body">
                 <h1>Welcome</h1>
-                <FilterContainer />
+               { <FilterContainer handleCategoryFilter = { this.props.handleCategoryFilter} />}
                 {
                     this.state.productDetailObject === null ?
                         <ProductsContainer
-                            allProducts={this.props.allProducts}
-                            cartClicked={this.props.cartClicked}
-                            handlePageClick={this.props.handlePageClick}
-                            hanldeProductAddToCartBtn={this.props.hanldeProductAddToCartBtn}
-                            hanldleProductCardDetails={this.hanldleProductCardDetails}
+                                allProducts={this.props.allProducts}
+                                cartClicked={this.props.cartClicked}
+                                handlePageClick={this.props.handlePageClick}
+                                hanldeProductAddToCartBtn={this.props.hanldeProductAddToCartBtn}
+                                hanldleProductCardDetails={this.hanldleProductCardDetails}
                         />
                         :
                         <ProductDetails
-                            product={this.state.productDetailObject}
-                            handleBackToProductsClick={this.handleBackToProductsClick}
+                                product={this.state.productDetailObject}
+                                handleBackToProductsClick={this.handleBackToProductsClick}
                         />
                 }
             </div>
