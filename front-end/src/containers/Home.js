@@ -11,7 +11,7 @@ export default class Home extends Component {
         searchTerm: "",
         sort: "",
         filter: [""]
-        
+
     }
 
     //Fetches all products and sets them to allProducts state variable 
@@ -36,17 +36,17 @@ export default class Home extends Component {
 
     renderProducts = () => {
         let rtnProducts = this.state.allProducts
-        if(this.state.searchTerm !== "" ){
-           let updatedProducts = rtnProducts.filter(product => { return product.name.toLowerCase().includes(this.state.searchTerm) })
-           rtnProducts = updatedProducts.slice(this.state.currentProductIndex, (this.state.currentProductIndex + 12))
+        if (this.state.searchTerm !== "") {
+            let updatedProducts = rtnProducts.filter(product => { return product.name.toLowerCase().includes(this.state.searchTerm) })
+            rtnProducts = updatedProducts.slice(this.state.currentProductIndex, (this.state.currentProductIndex + 12))
         }
 
-        if(this.state.filter!== "" ){
+        if (this.state.filter !== "") {
 
             let newArray = []
-            rtnProducts.filter(product => { 
-            if(product.category.includes(this.state.filter)){
-                    newArray.push(product) 
+            rtnProducts.filter(product => {
+                if (product.category.includes(this.state.filter)) {
+                    newArray.push(product)
                 }
             })
             rtnProducts = newArray
@@ -79,18 +79,16 @@ export default class Home extends Component {
 
     //Handles seting state for filtered radio buttons
     handleCategoryFilter = (event) => {
-        if(this.state.filter == event.target.value){
-        this.setState({filter: ""})
-        event.target.checked =  !event.target.checked
-        console.log("fill in")
+        if (this.state.filter == event.target.value) {
+            this.setState({ filter: "" })
+            event.target.checked = !event.target.checked
+            console.log("fill in")
 
         } else {
-        this.setState({filter: event.target.value})
-        event.target.checked =  !event.target.checked
-        console.log("Dont fill in")
+            this.setState({ filter: event.target.value })
+            event.target.checked = !event.target.checked
+            console.log("Dont fill in")
         }
-   
-
     }
 
     render() {
@@ -105,7 +103,7 @@ export default class Home extends Component {
                     cartClicked={this.state.cartClicked}
                     handlePageClick={this.handlePageClick}
                     hanldeProductAddToCartBtn={this.hanldeProductAddToCartBtn}
-                    handleCategoryFilter = {this.handleCategoryFilter}
+                    handleCategoryFilter={this.handleCategoryFilter}
                 />
             </div>
         )

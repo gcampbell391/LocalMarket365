@@ -1,13 +1,17 @@
 import React from "react"
+import Header from "./Header"
 
 
 
-const Cart = (props) => {
-    return (
-        <div className="cart">
-            <h1>Cart</h1>
-        </div>
-    )
+class Cart extends React.Component {
+    render() {
+        return (
+            <div className="cart">
+                <Header />
+                <h1>Cart</h1>
+            </div>
+        )
+    }
 }
 
 export default Cart
