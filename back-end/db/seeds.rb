@@ -33,8 +33,8 @@ products_array["records"].each do |product|
 end
 puts "loaded Products"
 
-user1 = User.create(first_name: "Jim", last_name: "Smith", img: "https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70", street_name: "120 Cannon Street", city: "Charleston", state: "South Carolina", zip_code: 29403, email: "user@gmail.com", password: "123")
-user2 = User.create(first_name: "Xander", last_name: "Jenkins", img: "https://cdn.pixabay.com/photo/2016/03/09/15/10/man-1246508__340.jpg", street_name: "70 Morris Street", city: "Charleston", state: "South Carolina", zip_code: 29403, email: "user2@gmail.com", password: "123")
+user1 = User.create(first_name: "Jim", last_name: "Smith", img: "https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70", street_name: "120 Cannon Street", city: "Charleston", state: "South Carolina", zip_code: 29403, email: "user@gmail.com", password_digest: BCrypt::Password.create('123'))
+user2 = User.create(first_name: "Xander", last_name: "Jenkins", img: "https://cdn.pixabay.com/photo/2016/03/09/15/10/man-1246508__340.jpg", street_name: "70 Morris Street", city: "Charleston", state: "South Carolina", zip_code: 29403, email: "user2@gmail.com", password_digest: BCrypt::Password.create('abc'))
 
 puts "loaded users"
 

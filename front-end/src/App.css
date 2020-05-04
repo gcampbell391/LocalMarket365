@@ -160,6 +160,45 @@ margin:auto
   margin-left: 100px;
 }
 
+.userAccountCard{
+  margin-left: 50px;
+}
+
+.userMinorDetails{
+  margin-left: 30px;
+}
+.sort{
+  text-align: left;
+}
+.toggleBox{
+  text-align: left;
+}
+
+.signupBox{
+  float:right;
+  margin-right: 150px;
+  margin-top: -150px;
+}
+
+.createNewAccountBtn{
+  margin-left: 20px;
+}
+
+.SignUpFormContainer{
+  text-align: center;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  margin-left: 350px;
+  margin-right: 350px;
+  box-shadow: 2px 2px 2px 2px gray;
+}
+.SignUpForm{
+
+}
+
+.signUpBtn{
+  padding:5px
+}
 
 
 

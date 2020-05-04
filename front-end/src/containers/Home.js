@@ -10,7 +10,8 @@ export default class Home extends Component {
         currentProductIndex: 0,
         searchTerm: "",
         sort: "",
-        filter: ""
+        filter: "",
+        currentUser: this.props.user
     }
 
     //Fetches all products and sets them to allProducts state variable 
@@ -21,6 +22,7 @@ export default class Home extends Component {
                 this.setState({ allProducts: data })
             })
     }
+
 
     //Handles Cart click on cart logo to display/hide cart component/div
     handleCartClick = () => {
@@ -36,31 +38,31 @@ export default class Home extends Component {
     renderProducts = () => {
         let rtnProducts = this.state.allProducts
 
-        if(this.state.searchTerm !== "" ){
+        if (this.state.searchTerm !== "") {
             rtnProducts = rtnProducts.filter(product => { return product.name.toLowerCase().includes(this.state.searchTerm) })
         }
-        if(this.state.filter!== "" ){
+        if (this.state.filter !== "") {
             let newArray = []
-            this.state.filter.forEach(category => { 
-                rtnProducts.filter(product => { 
-                    if(product.category.includes(category)){
-                            newArray.push(product) 
-                        }
-                    })
-          
+            this.state.filter.forEach(category => {
+                rtnProducts.filter(product => {
+                    if (product.category.includes(category)) {
+                        newArray.push(product)
+                    }
+                })
+
             })
             rtnProducts = newArray
-            }
+        }
 
-        if(this.state.sort !== "" || this.state.sort !== "all" ){
-            if(this.state.sort == "Low to High"){
+        if (this.state.sort !== "" || this.state.sort !== "all") {
+            if (this.state.sort == "Low to High") {
                 rtnProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-            } else if(this.state.sort == "High to Low") {
-                    rtnProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            } else if (this.state.sort == "High to Low") {
+                rtnProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
             }
         }
-            let finalProducts = rtnProducts.slice(this.state.currentProductIndex, (this.state.currentProductIndex + 12))
-            return finalProducts
+        let finalProducts = rtnProducts.slice(this.state.currentProductIndex, (this.state.currentProductIndex + 12))
+        return finalProducts
     }
 
     //Handles page click to render previous/next.....Needs Fix for if they go past 0
@@ -88,37 +90,38 @@ export default class Home extends Component {
     //Handles seting state for filtered radio buttons
     handleCategoryFilter = (event) => {
 
-        if(this.state.filter.includes(event.target.value)){
-        let updatedState = this.state.filter.filter(category => category !== event.target.value )
-        if (updatedState.length == 0) {
-            this.setState({filter: ""})
-        } else {
-        this.setState({filter: updatedState})
-        }
-        event.target.checked =  !event.target.checked
-        
+        if (this.state.filter.includes(event.target.value)) {
+            let updatedState = this.state.filter.filter(category => category !== event.target.value)
+            if (updatedState.length == 0) {
+                this.setState({ filter: "" })
+            } else {
+                this.setState({ filter: updatedState })
+            }
+            event.target.checked = !event.target.checked
+
 
         } else {
-        this.setState({filter: [...this.state.filter, event.target.value]})
-        event.target.checked =  !event.target.checked
+            this.setState({ filter: [...this.state.filter, event.target.value] })
+            event.target.checked = !event.target.checked
         }
     }
 
     renderCategories = () => {
-    let allCategories = []
-        allCategories =  this.state.allProducts.map(product => { 
-        return product.category
+        let allCategories = []
+        allCategories = this.state.allProducts.map(product => {
+            return product.category
         })
         let uniqueItems = Array.from(new Set(allCategories))
         return uniqueItems
     }
 
     handleSort = (event) => {
-       console.log(event.target.value)
-       this.setState({sort: event.target.value})
+        console.log(event.target.value)
+        this.setState({ sort: event.target.value })
     }
 
     render() {
+        console.log("Current User: ", this.state.currentUser)
         return (
             <div>
                 <Header
@@ -130,11 +133,11 @@ export default class Home extends Component {
                     cartClicked={this.state.cartClicked}
                     handlePageClick={this.handlePageClick}
                     hanldeProductAddToCartBtn={this.hanldeProductAddToCartBtn}
-
-                    handleCategoryFilter = {this.handleCategoryFilter}
-                    renderCategories = {this.renderCategories()} 
-                    handleSort = {this.handleSort}
-
+                    currentUser={this.state.currentUser}
+                    handleCategoryFilter={this.handleCategoryFilter}
+                    renderCategories={this.renderCategories()}
+                    handleSort={this.handleSort}
+                    currentUser={this.state.currentUser}
                 />
             </div>
         )

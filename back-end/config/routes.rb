@@ -3,5 +3,13 @@ Rails.application.routes.draw do
 
   get "/products", to: "products#index"
   get "/users", to: "users#index"
- 
+
+
+  resources :users
+  get '/log_in', to: 'users#log_in'
+  post 'users', to: 'users#create'
+  
+  post '/login', to: 'sessions#create'
+
+
 end
