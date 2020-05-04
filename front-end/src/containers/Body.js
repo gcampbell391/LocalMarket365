@@ -25,7 +25,7 @@ export default class Body extends Component {
         return (
             <div className="app_body">
                 <h1>Welcome</h1>
-               { <FilterContainer handleCategoryFilter = { this.props.handleCategoryFilter} />}
+               { <FilterContainer handleSort= {this.props.handleSort} renderCategories = {this.props.renderCategories} handleCategoryFilter = { this.props.handleCategoryFilter} />}
                 {
                     this.state.productDetailObject === null ?
                         <ProductsContainer
