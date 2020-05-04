@@ -5,8 +5,6 @@ import React, { Component } from "react"
 class FilterToggles extends Component {
 
 state = {
-  Pantry: false,
-  Produce: false
 }
 
 onChange = (event) => {
@@ -15,22 +13,26 @@ onChange = (event) => {
   this.props.handleCategoryFilter(event)
 }
 
+componentDidMount(){
+  this.setState({[this.props.category]: false})
+}
+
 
 
 render(){
     return (
         <div className="FilterToggles">
-          <h2>FilterToggles</h2>
+          
           
           <label>
-              <input type="checkbox" value="Pantry" checked= {this.state.Pantry} onChange = {(event) => this.onChange(event)}  />
-              Pantry
+              <input type="checkbox" value= {this.props.category} checked= {this.state[this.props.category]} onChange = {(event) => this.onChange(event)}  />
+              {this.props.category}
             </label>
             <br/>
-            <label>
+            {/* <label>
               <input type="checkbox" value="Produce" checked= {this.state.Produce} onChange = {(event) => this.onChange(event)}  />
               Produce
-            </label>
+            </label> */}
             
         </div>
 

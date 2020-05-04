@@ -10,7 +10,9 @@ export default class Home extends Component {
         currentProductIndex: 0,
         searchTerm: "",
         sort: "",
-        filter: [""]
+        filter: "",
+        allCategories: ["help"]
+        
         
     }
 
@@ -37,22 +39,29 @@ export default class Home extends Component {
     renderProducts = () => {
         let rtnProducts = this.state.allProducts
         if(this.state.searchTerm !== "" ){
-           let updatedProducts = rtnProducts.filter(product => { return product.name.toLowerCase().includes(this.state.searchTerm) })
-           rtnProducts = updatedProducts.slice(this.state.currentProductIndex, (this.state.currentProductIndex + 12))
+            rtnProducts = rtnProducts.filter(product => { return product.name.toLowerCase().includes(this.state.searchTerm) })
         }
-
         if(this.state.filter!== "" ){
-
             let newArray = []
-            rtnProducts.filter(product => { 
-            if(product.category.includes(this.state.filter)){
-                    newArray.push(product) 
-                }
+            this.state.filter.forEach(category => { 
+                rtnProducts.filter(product => { 
+                    if(product.category.includes(category)){
+                            newArray.push(product) 
+                        }
+                    })
             })
             rtnProducts = newArray
-        }
+            }
 
-        return rtnProducts
+        if(this.state.sort !== "" || this.state.sort !== "all" ){
+            if(this.state.sort == "Low to High"){
+                rtnProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+            } else if(this.state.sort == "High to Low") {
+                    rtnProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            }
+        }
+            let finalProducts = rtnProducts.slice(this.state.currentProductIndex, (this.state.currentProductIndex + 12))
+            return finalProducts
     }
 
     //Handles page click to render previous/next.....Needs Fix for if they go past 0
@@ -79,18 +88,34 @@ export default class Home extends Component {
 
     //Handles seting state for filtered radio buttons
     handleCategoryFilter = (event) => {
-        if(this.state.filter == event.target.value){
-        this.setState({filter: ""})
+        if(this.state.filter.includes(event.target.value)){
+        let updatedState = this.state.filter.filter(category => category !== event.target.value )
+        if (updatedState.length == 0) {
+            this.setState({filter: ""})
+        } else {
+        this.setState({filter: updatedState})
+        }
         event.target.checked =  !event.target.checked
-        console.log("fill in")
+        
 
         } else {
-        this.setState({filter: event.target.value})
+        this.setState({filter: [...this.state.filter, event.target.value]})
         event.target.checked =  !event.target.checked
-        console.log("Dont fill in")
         }
-   
+    }
 
+    renderCategories = () => {
+    let allCategories = []
+        allCategories =  this.state.allProducts.map(product => { 
+        return product.category
+        })
+        let uniqueItems = Array.from(new Set(allCategories))
+        return uniqueItems
+    }
+
+    handleSort = (event) => {
+       console.log(event.target.value)
+       this.setState({sort: event.target.value})
     }
 
     render() {
@@ -106,6 +131,8 @@ export default class Home extends Component {
                     handlePageClick={this.handlePageClick}
                     hanldeProductAddToCartBtn={this.hanldeProductAddToCartBtn}
                     handleCategoryFilter = {this.handleCategoryFilter}
+                    renderCategories = {this.renderCategories()} 
+                    handleSort = {this.handleSort}
                 />
             </div>
         )
