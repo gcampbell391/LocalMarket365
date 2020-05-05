@@ -246,6 +246,12 @@ margin:auto
 
 .cart-div {
   float: right;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding:5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  text-align: left;
+
 }
 
 

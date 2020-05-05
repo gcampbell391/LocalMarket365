@@ -1,5 +1,5 @@
 import React from "react"
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -11,7 +11,7 @@ const ProductCard = (props) => {
 
             <h2>{props.product.name}</h2>
             <p>${props.product.price}</p>
-            <p className="addToCartProductBtn"><FontAwesomeIcon icon={faCartPlus} style={{ color: 'blue' }} size="2x" onClick={() => props.hanldeProductAddToCartBtn(props.product)} /></p>
+            <p className="addToCartProductBtn"><FontAwesomeIcon icon={faPlus} style={{ color: 'blue' }} size="2x" onClick={() => props.hanldeProductAddToCartBtn(props.product)} /></p>
 
         </div>
 

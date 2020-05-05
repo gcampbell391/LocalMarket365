@@ -16,7 +16,7 @@ const FilterContainer = (props) => {
 
     return (
         <div className="filterContainer">
-            <h1>Looking for something specific?</h1>
+            <h3>Looking for something specific?</h3>
             <Sort handleSort={props.handleSort} />
             <div className="toggleBox">
                 <h4>FilterToggles</h4>
