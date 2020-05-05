@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import ProductsContainer from "./ProductsContainer"
 import FilterContainer from "./FilterContainer"
 import ProductDetails from "../components/ProductDetails"
+import Cart from "./Cart"
 
 
 
@@ -28,6 +29,7 @@ export default class Body extends Component {
                { <FilterContainer handleSort= {this.props.handleSort} renderCategories = {this.props.renderCategories} handleCategoryFilter = { this.props.handleCategoryFilter} />}
                 {
                     this.state.productDetailObject === null ?
+                        <div>
                         <ProductsContainer
                                 allProducts={this.props.allProducts}
                                 cartClicked={this.props.cartClicked}
@@ -35,12 +37,22 @@ export default class Body extends Component {
                                 hanldeProductAddToCartBtn={this.props.hanldeProductAddToCartBtn}
                                 hanldleProductCardDetails={this.hanldleProductCardDetails}
                         />
+
+                        <Cart  
+                        removeItemFromCart = {this.props.removeItemFromCart} 
+                        renderCartItems = {this.props.renderCartItems}
+                        handleAddQuantityBtn = {this.props.handleAddQuantityBtn}
+                        
+                        />
+                        </div>
                         :
                         <ProductDetails
                                 product={this.state.productDetailObject}
                                 handleBackToProductsClick={this.handleBackToProductsClick}
                         />
                 }
+
+               
             </div>
         )
     }

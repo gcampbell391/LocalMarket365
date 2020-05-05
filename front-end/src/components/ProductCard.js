@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ProductCard = (props) => {
     return (
         <div className="productCard">
-            <img src={props.product.product_img} height="100" width="100" className="productImg" onClick={() => props.hanldleProductCardDetails(props.product)} />
+            <img src={props.product.product_img} height="100" className="productImg" onClick={() => props.hanldleProductCardDetails(props.product)} />
             <h2>{props.product.name}</h2>
             <p>${props.product.price}</p>
             <p className="addToCartProductBtn"><FontAwesomeIcon icon={faCartPlus} style={{ color: 'blue' }} size="2x" onClick={() => props.hanldeProductAddToCartBtn(props.product)} /></p>

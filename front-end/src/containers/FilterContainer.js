@@ -7,9 +7,8 @@ const FilterContainer = (props) => {
 
 
 const createToggles = () => {
-   console.log("happy")
+
     return props.renderCategories.map(category => {
-        console.log(category)
     return <FilterToggles category = { category } handleCategoryFilter = { props.handleCategoryFilter} /> 
     })
 }

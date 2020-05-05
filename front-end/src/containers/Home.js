@@ -10,7 +10,11 @@ export default class Home extends Component {
         currentProductIndex: 0,
         searchTerm: "",
         sort: "",
-        filter: ""
+        filter: "",
+        cart: [{
+            product: {first: "1"},
+            quantity: null
+        }]
     }
 
     //Fetches all products and sets them to allProducts state variable 
@@ -47,11 +51,9 @@ export default class Home extends Component {
                             newArray.push(product) 
                         }
                     })
-          
             })
             rtnProducts = newArray
             }
-
         if(this.state.sort !== "" || this.state.sort !== "all" ){
             if(this.state.sort == "Low to High"){
                 rtnProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
@@ -77,8 +79,26 @@ export default class Home extends Component {
 
     //As of now just console logs clicked product to console...
     hanldeProductAddToCartBtn = (product) => {
-        console.log("Product Clicked to add to cart:", product)
-    }
+        let inCart = false
+        this.state.cart.forEach(item => {
+            console.log(item)
+            if(item.product === product){
+            window.alert("Item is aready in your cart")
+            inCart = true
+            }
+        })
+
+            if(inCart !== true)  {
+            this.setState(
+            {cart: [ ...this.state.cart,
+                { 
+            product: product,
+            quantity: 1
+                }]
+            })
+        }
+        inCart = false
+}
 
     //Handle Input Change to set state variable accordingly 
     handleSearchTermChange = (event) => {
@@ -105,7 +125,7 @@ export default class Home extends Component {
     }
 
     renderCategories = () => {
-    let allCategories = []
+        let allCategories = []
         allCategories =  this.state.allProducts.map(product => { 
         return product.category
         })
@@ -117,6 +137,30 @@ export default class Home extends Component {
        console.log(event.target.value)
        this.setState({sort: event.target.value})
     }
+
+    removeItemFromCart = (productItem)=> {
+        let newCart = this.state.cart.filter(item => item.product !== productItem)
+
+        this.setState({cart: newCart})
+    }
+    
+    handleAddQuantityBtn = (quantity, product) => {
+        let cartArray = []
+        this.state.cart.forEach(item =>{
+                if(item.product === product){
+                let obj = {
+                    product: product,
+                    quantity: quantity
+                }
+                cartArray.push(obj)
+                } else {
+                    cartArray.push(item)
+                }
+            })
+            this.setState({cart: cartArray})
+        }
+
+
 
     render() {
         return (
@@ -134,6 +178,9 @@ export default class Home extends Component {
                     handleCategoryFilter = {this.handleCategoryFilter}
                     renderCategories = {this.renderCategories()} 
                     handleSort = {this.handleSort}
+                    renderCartItems = {this.state.cart}
+                    removeItemFromCart = {this.removeItemFromCart}
+                    handleAddQuantityBtn = {this.handleAddQuantityBtn}
 
                 />
             </div>
