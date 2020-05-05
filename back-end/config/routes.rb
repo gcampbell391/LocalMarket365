@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'purchases/create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   get "/products", to: "products#index"
@@ -11,5 +12,8 @@ Rails.application.routes.draw do
   
   post '/login', to: 'sessions#create'
 
+
+  post "/purchases/new", to: "purchases#create" 
+ 
 
 end

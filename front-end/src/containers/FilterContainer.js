@@ -6,11 +6,13 @@ const FilterContainer = (props) => {
 
 
 
+
     const createToggles = () => {
         return props.renderCategories.map(category => {
             return <FilterToggles category={category} handleCategoryFilter={props.handleCategoryFilter} key={category} />
         })
     }
+
 
     return (
         <div className="filterContainer">
