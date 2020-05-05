@@ -192,14 +192,42 @@ margin:auto
   margin-right: 350px;
   box-shadow: 2px 2px 2px 2px gray;
 }
-.SignUpForm{
-
-}
 
 .signUpBtn{
   padding:5px
 }
 
+.EditAccountFormContainer{
+  float:right;
+  margin-top:-600px;
+  margin-right: 200px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding:5px;
+  box-shadow: 2px 2px 2px 2px gray;
+  text-align: center;
+  
+}
+
+.EditAccountFormContainer input {
+  width: 300px
+  
+}
+
+.EditAccountForm{
+  float:left
+}
+
+.submitEditAccountBtn{
+  max-width: 100px;
+  color:white;
+  background-color: #4A6EE2;
+}
+.submitEditAccountBtn:hover{
+  max-width: 100px;
+  color:#4A6EE2;
+  background-color: white;
+}
 
 
 @keyframes shake {

@@ -22,7 +22,7 @@ class LogIn extends React.Component {
         return (
             <div>
                 <Header />
-                {this.state.user ? <UserAccountHome user={this.state.user} />
+                {this.state.user ? <UserAccountHome user={this.state.user} handleEditFormSubmit={this.props.handleEditFormSubmit} />
                     :
                     <div className="loginFormBody">
                         <h1>Log In or Sign Up Today</h1>

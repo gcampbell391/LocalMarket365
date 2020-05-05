@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 
 
-
+  //Handles Log authenication 
   handleLogInBtn = (event) => {
     event.preventDefault()
     const userEmail = event.target.parentElement.querySelector("#loginEmailInput").value
@@ -42,9 +42,33 @@ class App extends React.Component {
   }
 
 
-
+  //Handles Sign Up form to create new user and log user in..persists in the backend 
   handleSignUpFormSubmit = (event) => {
     event.preventDefault()
+    const newUser = this.createUserObjectFromForm(event)
+    fetch('http://localhost:3000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.setState({ user: data.user })
+      })
+  }
+
+  //Handles Edit button click on UserAccountHome Edit Form
+  handleEditFormSubmit = (event) => {
+    event.preventDefault()
+    const updatedUser = this.createUserObjectFromForm(event)
+    console.log(updatedUser)
+  }
+
+  //Helper method to create user object from forms
+  createUserObjectFromForm = (event) => {
     let userEmail = event.target.parentElement.querySelector("#emailInput").value
     let userPassword = event.target.parentElement.querySelector("#passwordInput").value
     let userImg = event.target.parentElement.querySelector("#imgInput").value
@@ -65,18 +89,7 @@ class App extends React.Component {
       zip_code: newZip,
       img: userImg
     }
-    fetch('http://localhost:3000/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newUser),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        this.setState({ user: data.user })
-      })
+    return newUser
   }
 
   render() {
@@ -85,7 +98,7 @@ class App extends React.Component {
 
         <div>
           <Route exact path="/" render={() => <Home user={this.state.user} />} />
-          <Route exact path="/log_in" render={() => this.state.user ? <UserAccountHome user={this.state.user} /> : <LogInForm user={this.state.user} handleLogInBtn={this.handleLogInBtn} handleSignUpFormSubmit={this.handleSignUpFormSubmit} showSignUpForm={this.state.showSignUpForm} />} />
+          <Route exact path="/log_in" render={() => this.state.user ? <UserAccountHome user={this.state.user} handleEditFormSubmit={this.handleEditFormSubmit} /> : <LogInForm user={this.state.user} handleLogInBtn={this.handleLogInBtn} handleSignUpFormSubmit={this.handleSignUpFormSubmit} showSignUpForm={this.state.showSignUpForm} />} />
           <Route exact path="/current_cart" render={() => <Cart />} />
         </div>
       </Router>
