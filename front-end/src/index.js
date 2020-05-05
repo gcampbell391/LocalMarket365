@@ -15,7 +15,7 @@ ReactDOM.render((
     <div>
       <Route exact path="/" component={Home} />
       <Route exact path="/log_in" component={LogInForm} />
-      <Route exact path="/current_cart" component={Cart} />
+      {/* <Route exact path="/current_cart" component={Cart} /> */}
     </div>
   </Router>),
   document.getElementById('root')

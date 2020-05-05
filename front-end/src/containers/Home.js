@@ -11,10 +11,8 @@ export default class Home extends Component {
         searchTerm: "",
         sort: "",
         filter: "",
-        cart: [{
-            product: {first: "1"},
-            quantity: null
-        }]
+        cart: [],
+        viewCart: false
     }
 
     //Fetches all products and sets them to allProducts state variable 
@@ -87,7 +85,6 @@ export default class Home extends Component {
             inCart = true
             }
         })
-
             if(inCart !== true)  {
             this.setState(
             {cart: [ ...this.state.cart,
@@ -161,12 +158,51 @@ export default class Home extends Component {
         }
 
 
+    handleCheckoutBtn = () => {
+
+        let cartArray = []
+        this.state.cart.forEach(item=> {
+
+           let obj = {
+                productid: item.product.id,
+                quantity: item.quantity
+            }
+            cartArray.push(obj)
+        })
+
+        cartArray.slice(1, ...cartArray)
+        console.log(cartArray)
+
+        fetch("http://localhost:3000/purchases/new", {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({cart: cartArray}),
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+            this.setState({cart: []})
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+    }
+
+    handleViewCart = () => {
+        console.log("happy")
+        this.setState({viewCart: !this.state.viewCart})
+    }
+
+
 
     render() {
         return (
             <div>
                 <Header
                     handleCartClick={this.handleCartClick}
+                    handleViewCart = {this.handleViewCart}
                     handleSearchTermChange={this.handleSearchTermChange}
                 />
                 <Body
@@ -181,7 +217,8 @@ export default class Home extends Component {
                     renderCartItems = {this.state.cart}
                     removeItemFromCart = {this.removeItemFromCart}
                     handleAddQuantityBtn = {this.handleAddQuantityBtn}
-
+                    handleCheckoutBtn = { this.handleCheckoutBtn}
+                    viewCart = {this.state.viewCart}
                 />
             </div>
         )

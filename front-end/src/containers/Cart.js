@@ -10,7 +10,8 @@ renderCartCards = () => {
     console.log(this.props.renderCartItems)
   return  this.props.renderCartItems.map(item => {
     return <CartCard handleAddQuantityBtn = {this.props.handleAddQuantityBtn} removeItemFromCart = {this.props.removeItemFromCart} product = {item.product}  />
-    })
+     
+})
 }
 
     render() {
@@ -18,8 +19,7 @@ renderCartCards = () => {
             <div className="cart">
                 <h1>Cart</h1>
                 {this.renderCartCards()}
-               
-                <button > Checkout </button>
+                <button onClick =  { this.props.handleCheckoutBtn } > Checkout </button>
             </div>
         )
     }

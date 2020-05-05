@@ -177,5 +177,8 @@ margin:auto
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
+.cart-div {
+  float: right;
+}
 
 

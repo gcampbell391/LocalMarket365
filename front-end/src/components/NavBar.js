@@ -12,7 +12,8 @@ const NavBar = (props) => {
             <ul className="iconList" >
                 <NavLink to="/" exact><FontAwesomeIcon icon={faHome} style={{ color: 'white' }} size="2x" /> </NavLink>
                 <NavLink to="/log_in" exact><FontAwesomeIcon icon={faUserCircle} style={{ color: 'white' }} size="2x" /></NavLink>
-                <NavLink to="/current_cart" exact><FontAwesomeIcon icon={faShoppingCart} style={{ color: 'white' }} size="2x" /></NavLink>
+                {/* <NavLink to="/current_cart" exact><FontAwesomeIcon icon={faShoppingCart} style={{ color: 'white' }} size="2x" /></NavLink> */}
+                <FontAwesomeIcon onClick = {props.handleViewCart} icon={faShoppingCart} style={{ color: 'white' }} size="2x" />
             </ul>
         </div >
     )

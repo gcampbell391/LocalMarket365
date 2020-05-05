@@ -26,7 +26,17 @@ export default class Body extends Component {
         return (
             <div className="app_body">
                 <h1>Welcome</h1>
+
                { <FilterContainer handleSort= {this.props.handleSort} renderCategories = {this.props.renderCategories} handleCategoryFilter = { this.props.handleCategoryFilter} />}
+                
+               <div className = "cart-div"  >
+                        { this.props.viewCart? <Cart  
+                        removeItemFromCart = {this.props.removeItemFromCart} 
+                        renderCartItems = {this.props.renderCartItems}
+                        handleAddQuantityBtn = {this.props.handleAddQuantityBtn}
+                        handleCheckoutBtn = { this.props.handleCheckoutBtn}
+                        /> : "" }
+                </div>
                 {
                     this.state.productDetailObject === null ?
                         <div>
@@ -37,21 +47,16 @@ export default class Body extends Component {
                                 hanldeProductAddToCartBtn={this.props.hanldeProductAddToCartBtn}
                                 hanldleProductCardDetails={this.hanldleProductCardDetails}
                         />
-
-                        <Cart  
-                        removeItemFromCart = {this.props.removeItemFromCart} 
-                        renderCartItems = {this.props.renderCartItems}
-                        handleAddQuantityBtn = {this.props.handleAddQuantityBtn}
                         
-                        />
                         </div>
                         :
+                        <div>
                         <ProductDetails
                                 product={this.state.productDetailObject}
                                 handleBackToProductsClick={this.handleBackToProductsClick}
                         />
+                        </div>
                 }
-
                
             </div>
         )
