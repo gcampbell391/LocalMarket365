@@ -4,9 +4,6 @@ import FilterToggles from "../components/FilterToggles"
 
 const FilterContainer = (props) => {
 
-
-
-
     const createToggles = () => {
         return props.renderCategories.map(category => {
             return <FilterToggles category={category} handleCategoryFilter={props.handleCategoryFilter} key={category} />
@@ -16,7 +13,7 @@ const FilterContainer = (props) => {
 
     return (
         <div className="filterContainer">
-            <h3>Looking for something specific?</h3>
+            {/* <h3>Sort </h3> */}
             <Sort handleSort={props.handleSort} />
             <div className="toggleBox">
                 <h4>FilterToggles</h4>

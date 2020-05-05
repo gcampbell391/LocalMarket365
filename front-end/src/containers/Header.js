@@ -13,7 +13,7 @@ export default class Header extends Component {
     render() {
         return (
             <div className="headerContainer">
-                <img className="appLogo" alt="Company Logo" />
+                <img className="appLogo" src={require("../images/market365Logo.png")}  alt="Company Logo" />
                 <NavBar handleViewCart = {this.props.handleViewCart} handleCartClick={this.props.handleCartClick} />
                 <Search handleSearchTermChange={this.props.handleSearchTermChange} />
 

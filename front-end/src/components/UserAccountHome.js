@@ -5,7 +5,7 @@ import EditAccount from "../forms/EditAccount"
 class UserAccountHome extends React.Component {
 
     state = {
-        showEditInfo: false
+        showEditInfo: this.props.showEditInfo
     }
 
 
@@ -23,6 +23,8 @@ class UserAccountHome extends React.Component {
             <div>
                 <Header />
                 <div className="userAccountCard">
+                    <button className="logOutBtn" onClick={this.props.handleLogOut}>Log Out</button>
+                    <button onClick={this.handleEditClick}>Edit Info</button>
                     <h1>Welcome, {this.props.user.first_name}!</h1>
                     <img src={this.props.user.img} alt="User Pictute" height="300" width="300"></img>
                     <h2>Current Information</h2>
@@ -38,7 +40,6 @@ class UserAccountHome extends React.Component {
                         <p>State: {this.props.user.state}</p>
                         <p>Zip: {this.props.user.zip_code}</p>
                     </div>
-                    <button onClick={this.handleEditClick}>Edit Info</button>
                 </div>
                 {this.state.showEditInfo && <EditAccount user={this.props.user} handleEditFormSubmit={this.props.handleEditFormSubmit} onClose={this.onClose} />}
             </div>

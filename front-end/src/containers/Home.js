@@ -177,8 +177,7 @@ export default class Home extends Component {
             cartArray.push(obj)
         })
 
-        cartArray.slice(1, ...cartArray)
-        console.log(cartArray)
+        
 
         fetch("http://localhost:3000/purchases/new", {
             method: 'POST', // or 'PUT'
