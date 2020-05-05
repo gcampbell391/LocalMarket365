@@ -9,8 +9,8 @@ import UserAccountHome from './components/UserAccountHome';
 class App extends React.Component {
   state = {
     user: null,
-    showSignUpForm: false
-
+    showSignUpForm: false,
+    showEditInfo: false
   }
 
 
@@ -57,6 +57,7 @@ class App extends React.Component {
       .then(data => {
         console.log(data)
         this.setState({ user: data.user })
+        this.setState({ showEditInfo: false })
       })
   }
 
@@ -65,6 +66,20 @@ class App extends React.Component {
     event.preventDefault()
     const updatedUser = this.createUserObjectFromForm(event)
     console.log(updatedUser)
+    fetch(`http://localhost:3000/users/${this.state.user.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedUser),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.setState({ user: data.user })
+
+      })
+    event.target.parentElement.reset()
   }
 
   //Helper method to create user object from forms
@@ -74,7 +89,7 @@ class App extends React.Component {
     let userImg = event.target.parentElement.querySelector("#imgInput").value
     let userFName = event.target.parentElement.querySelector("#fNameInput").value
     let userLName = event.target.parentElement.querySelector("#lNameInput").value
-    let newStreet = event.target.parentElement.querySelector("#stateInput").value
+    let newStreet = event.target.parentElement.querySelector("#streetInput").value
     let newCity = event.target.parentElement.querySelector("#cityInput").value
     let newState = event.target.parentElement.querySelector("#stateInput").value
     let newZip = event.target.parentElement.querySelector("#zipInput").value
@@ -92,13 +107,17 @@ class App extends React.Component {
     return newUser
   }
 
+  handleLogOut = () => {
+    this.setState({ user: null })
+  }
+
   render() {
     return (
       <Router>
 
         <div>
           <Route exact path="/" render={() => <Home user={this.state.user} />} />
-          <Route exact path="/log_in" render={() => this.state.user ? <UserAccountHome user={this.state.user} handleEditFormSubmit={this.handleEditFormSubmit} /> : <LogInForm user={this.state.user} handleLogInBtn={this.handleLogInBtn} handleSignUpFormSubmit={this.handleSignUpFormSubmit} showSignUpForm={this.state.showSignUpForm} />} />
+          <Route exact path="/log_in" render={() => this.state.user ? <UserAccountHome user={this.state.user} handleEditFormSubmit={this.handleEditFormSubmit} showEditInfo={this.state.showEditInfo} handleLogOut={this.handleLogOut} /> : <LogInForm user={this.state.user} handleLogInBtn={this.handleLogInBtn} handleSignUpFormSubmit={this.handleSignUpFormSubmit} showSignUpForm={this.state.showSignUpForm} />} />
           <Route exact path="/current_cart" render={() => <Cart />} />
         </div>
       </Router>

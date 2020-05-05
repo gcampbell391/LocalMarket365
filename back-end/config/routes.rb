@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
   get "/products", to: "products#index"
   get "/users", to: "users#index"
 
@@ -8,8 +7,9 @@ Rails.application.routes.draw do
   resources :users
   get '/log_in', to: 'users#log_in'
   post 'users', to: 'users#create'
-  
+  patch '/users/:id', to: 'users#update'
   post '/login', to: 'sessions#create'
+
 
 
 end

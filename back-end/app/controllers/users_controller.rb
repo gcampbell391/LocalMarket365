@@ -21,11 +21,22 @@ class UsersController < ApplicationController
             render json: { status: 401 }
         end
     end
-    
+
+
+    def update
+        @user = User.find_by(id: params[:id])
+        @user.password_digest = BCrypt::Password.create(params["password"])
+        @user.update(user_params)
+        @user.save
+        render json: {
+            status: :updated,
+            user: @user
+        }
+    end
 
 
     private
     def user_params
-        params.require(:user).permit(:email, :password, :first_name, :last_name, :img, :street_name, :city, :state, :zip_code)
+        params.require(:user).permit(:id,:email, :password, :first_name, :last_name, :img, :street_name, :city, :state, :zip_code)
     end
 end
