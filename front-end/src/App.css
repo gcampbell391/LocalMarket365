@@ -11,8 +11,8 @@
 }
 
 .productContainer{
-  /* position: absolute; */
-  float:right;
+  position: static;
+  float: center;
   margin-right: 100px;
   width:700px
 }
@@ -23,7 +23,7 @@
 }
 
 .productCard{
-  text-align: center;
+  text-align: left;
   flex: 1 0 21%;
   background-color: white;
   border-radius: 5px;
@@ -91,6 +91,8 @@ margin:auto
 .backNextBtns{
   font-size: 20px;
   margin: 5px;
+  border-radius: 5px;
+  border-color:  #4A6EE2;
   background-color: #4A6EE2;
   color: white;
 }
@@ -105,6 +107,8 @@ margin:auto
 .app_body{
   text-align: center;
 }
+
+
 
 .productDetails{
   margin-left: 600px;

@@ -28,13 +28,10 @@ export default class Body extends Component {
 
                 {/* {this.props.currentUser ? <h1>Welcome, {this.props.currentUser.first_name}</h1> : <h1>Welcome</h1>} */}
 
-                
-               
-
-         
                 { <FilterContainer handleSort= {this.props.handleSort} renderCategories = {this.props.renderCategories} handleCategoryFilter = { this.props.handleCategoryFilter} />}
                 
-               
+
+
                 <div className = "cart-div"  >
                         { this.props.viewCart? <Cart  
                         removeItemFromCart = {this.props.removeItemFromCart} 
