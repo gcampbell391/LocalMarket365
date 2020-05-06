@@ -19,9 +19,9 @@ class Cart extends React.Component {
     render() {
         return (
             <div className="cart">
-                <h1>Cart</h1>
+                <h3>Cart</h3>
                 {this.renderCartCards()}
-                <Link to={{ pathname: "/confirmOrder", cart: "cart" }}> <button > Checkout </button> </Link>
+                {this.props.renderCartItems && this.props.renderCartItems.length?   <Link to={{ pathname: "/confirmOrder", cart: "cart" }}> <button > Checkout </button> </Link> : null  }
             </div>
         )
     }

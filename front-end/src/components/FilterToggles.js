@@ -24,11 +24,20 @@ render(){
         <div className="FilterToggles">
           
           
-          <label>
+            {/* <label>
               <input type="checkbox" value= {this.props.category} checked= {this.state[this.props.category]} onChange = {(event) => this.onChange(event)}  />
               {this.props.category}
-            </label>
+            </label> */}
+
             <br/>
+
+            <label class="container">
+            <input type="checkbox" value= {this.props.category} checked= {this.state[this.props.category]} onChange = {(event) => this.onChange(event)}  />
+            <div class="filterName">
+            {this.props.category }
+            </div>
+            <span class="checkmark"></span>
+            </label>
             {/* <label>
               <input type="checkbox" value="Produce" checked= {this.state.Produce} onChange = {(event) => this.onChange(event)}  />
               Produce

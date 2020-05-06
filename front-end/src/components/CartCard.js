@@ -31,7 +31,7 @@ class CartCard extends Component {
         <div >
             <img src={this.props.product.product_img} height="50" className="productImg" />
             <h4>{this.props.product.name}</h4>
-            <h6>{this.props.product.price}</h6>
+            <h6>{"$"+ this.props.product.price}</h6>
             <h4>Amount</h4>
 
             <button onClick = {this.minusItem}> - </button>

@@ -11,7 +11,11 @@ class Map extends React.Component {
     usersCoordinates: [0, 0]
   }
 
+  
+
+
   componentDidMount() {
+    
     const user = this.props.user ? this.props.user : null
     const userAddress = user ? `${user.street_name} ${user.city} ${user.state} ${user.zip_code}` : "no user"
     const GOOGLE_API_KEY = `${process.env.REACT_APP_GOOGLE_MAP_KEY}`
@@ -31,6 +35,7 @@ class Map extends React.Component {
 
   }
   render() {
+    
     console.log("Current User Coordinates: ", this.state.usersCoordinates)
     return (
       <LeafletMap

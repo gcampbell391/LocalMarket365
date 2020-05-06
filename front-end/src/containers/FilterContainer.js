@@ -16,7 +16,7 @@ const FilterContainer = (props) => {
             {/* <h3>Sort </h3> */}
             <Sort handleSort={props.handleSort} />
             <div className="toggleBox">
-                <h4>FilterToggles</h4>
+                <h4>Filter</h4>
                 {createToggles()}
             </div>
         </div>
