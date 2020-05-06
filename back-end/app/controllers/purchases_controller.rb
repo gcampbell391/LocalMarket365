@@ -1,5 +1,10 @@
 class PurchasesController < ApplicationController
 
+  def index
+    purchases = Purchase.all
+    render json: purchases
+  end
+
   def create
     
     order = Order.create(user_id: 1, current: true, completed: false)

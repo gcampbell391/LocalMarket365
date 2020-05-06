@@ -5,12 +5,18 @@ import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 
 class Map extends React.Component {
+  state = {
+    positionCoordinates: [33.7562, -84.3885]
+  }
+
+
   render() {
+
     return (
       <LeafletMap
-        center={[50, 10]}
-        zoom={6}
-        maxZoom={10}
+        center={this.state.positionCoordinates}
+        zoom={18}
+        maxZoom={20}
         attributionControl={true}
         zoomControl={true}
         doubleClickZoom={true}
@@ -22,9 +28,9 @@ class Map extends React.Component {
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <Marker position={[50, 10]}>
+        <Marker position={this.state.positionCoordinates}>
           <Popup>
-            Popup for any custom information.
+            <img src={require("../images/market365Logo.png")} height="40"></img>
           </Popup>
         </Marker>
       </LeafletMap>

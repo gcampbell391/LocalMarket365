@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "/products", to: "products#index"
   get "/users", to: "users#index"
 
+  get '/purchases', to: "purchases#index"
 
   resources :users
   get '/log_in', to: 'users#log_in'

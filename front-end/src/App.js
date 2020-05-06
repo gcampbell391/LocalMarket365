@@ -11,8 +11,14 @@ class App extends React.Component {
   state = {
     user: null,
     showSignUpForm: false,
-    showEditInfo: false
+    showEditInfo: false,
+    cart: []
   }
+
+  getBelowCart = (cart) => {
+    this.setState({ cart: cart })
+  }
+
 
 
   //Handles Log authenication 
@@ -112,14 +118,44 @@ class App extends React.Component {
     this.setState({ user: null })
   }
 
+  handleCheckoutBtn = (time) => {
+
+    let cartArray = []
+    this.state.cart.forEach(item => {
+
+      let obj = {
+        productid: item.product.id,
+        quantity: item.quantity
+      }
+      cartArray.push(obj)
+    })
+    fetch("http://localhost:3000/purchases/new", {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ cart: cartArray }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        this.setState({ cart: [] })
+        alert(`Thank you for shopping at Market360. Please be sure pick up your order at ${time}`)
+
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
   render() {
+    console.log("Current App Cart", this.state.cart)
     return (
       <Router>
-
         <div>
-          <Route exact path="/" render={() => <Home user={this.state.user} />} />
+          <Route exact path="/" render={() => <Home user={this.state.user} getBelowCart={this.getBelowCart} />} />
           <Route exact path="/log_in" render={() => this.state.user ? <UserAccountHome user={this.state.user} handleEditFormSubmit={this.handleEditFormSubmit} showEditInfo={this.state.showEditInfo} handleLogOut={this.handleLogOut} /> : <LogInForm user={this.state.user} handleLogInBtn={this.handleLogInBtn} handleSignUpFormSubmit={this.handleSignUpFormSubmit} showSignUpForm={this.state.showSignUpForm} />} />
-          <Route exact path="/confirmOrder" render={() => <ConfirmOrder />} />
+          <Route exact path="/confirmOrder" render={() => <ConfirmOrder cart={this.state.cart} handleCheckoutBtn={this.handleCheckoutBtn} />} />
         </div>
       </Router>
     )

@@ -269,6 +269,14 @@ margin:auto
 
 .leaflet-container {
   height: 200px;
-  width: 50%;
+  width: 100%;
+}
+.leaflet-popup-content-wrapper {
+  background-color: #000
+}
+
+.confirmOrderContainer{
+  text-align: center;
+  float:center
 }
 
