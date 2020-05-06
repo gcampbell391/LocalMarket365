@@ -13,7 +13,8 @@ export default class Home extends Component {
         filter: "",
         currentUser: this.props.user,
         cart: [],
-        viewCart: false
+        viewCart: false,
+        confirmCheckout: false
     }
 
     //Fetches all products and sets them to allProducts state variable 
@@ -201,6 +202,10 @@ export default class Home extends Component {
         this.setState({viewCart: !this.state.viewCart})
     }
 
+    handleConfirmOrder = () =>{ 
+        console.log("happy")
+        this.setState({confirmCheckout: true})
+    }
 
 
     render() {
@@ -217,7 +222,7 @@ export default class Home extends Component {
                     cartClicked={this.state.cartClicked}
                     handlePageClick={this.handlePageClick}
                     hanldeProductAddToCartBtn={this.hanldeProductAddToCartBtn}
-
+                    
                     currentUser={this.state.currentUser}
                     handleCategoryFilter = {this.handleCategoryFilter}
                     renderCategories = {this.renderCategories()} 
@@ -227,6 +232,7 @@ export default class Home extends Component {
                     handleAddQuantityBtn = {this.handleAddQuantityBtn}
                     handleCheckoutBtn = { this.handleCheckoutBtn}
                     viewCart = {this.state.viewCart}
+                    handleConfirmOrder = { this.handleConfirmOrder}
 
                 />
             </div>

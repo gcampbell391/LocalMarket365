@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import LogInForm from "./forms/LogIn"
 import Cart from "./containers/Cart"
 import UserAccountHome from './components/UserAccountHome';
+import ConfirmOrder from './containers/ConfirmOrder';
 
 class App extends React.Component {
   state = {
@@ -118,7 +119,7 @@ class App extends React.Component {
         <div>
           <Route exact path="/" render={() => <Home user={this.state.user} />} />
           <Route exact path="/log_in" render={() => this.state.user ? <UserAccountHome user={this.state.user} handleEditFormSubmit={this.handleEditFormSubmit} showEditInfo={this.state.showEditInfo} handleLogOut={this.handleLogOut} /> : <LogInForm user={this.state.user} handleLogInBtn={this.handleLogInBtn} handleSignUpFormSubmit={this.handleSignUpFormSubmit} showSignUpForm={this.state.showSignUpForm} />} />
-          <Route exact path="/current_cart" render={() => <Cart />} />
+          <Route exact path="/confirmOrder" render={() => <ConfirmOrder />} />
         </div>
       </Router>
     )

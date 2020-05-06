@@ -1,6 +1,8 @@
 import React from "react"
 import CartCard from "../components/CartCard"
 
+import { NavLink } from 'react-router-dom';
+
 
 
 class Cart extends React.Component {
@@ -19,7 +21,7 @@ renderCartCards = () => {
             <div className="cart">
                 <h1>Cart</h1>
                 {this.renderCartCards()}
-                <button onClick =  { this.props.handleCheckoutBtn } > Checkout </button>
+                <NavLink to="/confirmOrder" exact> <button > Checkout </button> </NavLink>
             </div>
         )
     }

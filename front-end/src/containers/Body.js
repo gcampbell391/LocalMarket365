@@ -28,15 +28,20 @@ export default class Body extends Component {
 
                 {/* {this.props.currentUser ? <h1>Welcome, {this.props.currentUser.first_name}</h1> : <h1>Welcome</h1>} */}
 
-
-               { <FilterContainer handleSort= {this.props.handleSort} renderCategories = {this.props.renderCategories} handleCategoryFilter = { this.props.handleCategoryFilter} />}
                 
-               <div className = "cart-div"  >
+               
+
+         
+                { <FilterContainer handleSort= {this.props.handleSort} renderCategories = {this.props.renderCategories} handleCategoryFilter = { this.props.handleCategoryFilter} />}
+                
+               
+                <div className = "cart-div"  >
                         { this.props.viewCart? <Cart  
                         removeItemFromCart = {this.props.removeItemFromCart} 
                         renderCartItems = {this.props.renderCartItems}
                         handleAddQuantityBtn = {this.props.handleAddQuantityBtn}
-                        handleCheckoutBtn = { this.props.handleCheckoutBtn}
+                        // handleCheckoutBtn = { this.props.handleCheckoutBtn}
+                        handleConfirmOrder = { this.props.handleConfirmOrder}
                         /> : "" }
                 </div>
 
@@ -60,9 +65,9 @@ export default class Body extends Component {
                         />
                         </div>
                 }
-               
-            </div>
-        )
-    }
+                </div>
+            )
+        }
+    
 
 }
