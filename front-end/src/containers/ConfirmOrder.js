@@ -24,13 +24,14 @@ export default class ConfirmOrder extends Component {
             <div>
                 <Header />
                 <div className="confirmOrderContainer">
+                    {this.props.user ? null : <h2>Please log in before confirming order</h2>}
                     <h2>Total Price</h2>
                     <p>$ {this.state.total_price}</p>
                     <h3> Schedule a time for pickup</h3>
                     <input type="time" id="appt" name="appt" min="09:00" max="18:00" required></input>
                     <h3> Location </h3>
-                    <Map />
-                    <button onClick={() => this.props.handleCheckoutBtn(document.querySelector("#appt").value)}>Confirm Order</button>
+                    <Map user={this.props.user} />
+                    <button onClick={this.props.user ? () => this.props.handleCheckoutBtn(document.querySelector("#appt").value) : null}>Confirm Order</button>
                 </div>
             </div>
 

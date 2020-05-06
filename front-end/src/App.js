@@ -155,7 +155,7 @@ class App extends React.Component {
         <div>
           <Route exact path="/" render={() => <Home user={this.state.user} getBelowCart={this.getBelowCart} />} />
           <Route exact path="/log_in" render={() => this.state.user ? <UserAccountHome user={this.state.user} handleEditFormSubmit={this.handleEditFormSubmit} showEditInfo={this.state.showEditInfo} handleLogOut={this.handleLogOut} /> : <LogInForm user={this.state.user} handleLogInBtn={this.handleLogInBtn} handleSignUpFormSubmit={this.handleSignUpFormSubmit} showSignUpForm={this.state.showSignUpForm} />} />
-          <Route exact path="/confirmOrder" render={() => <ConfirmOrder cart={this.state.cart} handleCheckoutBtn={this.handleCheckoutBtn} />} />
+          <Route exact path="/confirmOrder" render={() => <ConfirmOrder cart={this.state.cart} handleCheckoutBtn={this.handleCheckoutBtn} user={this.state.user} />} />
         </div>
       </Router>
     )

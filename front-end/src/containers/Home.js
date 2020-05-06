@@ -177,18 +177,15 @@ export default class Home extends Component {
 
 
     handleViewCart = () => {
-        console.log("happy")
         this.setState({ viewCart: !this.state.viewCart })
     }
 
     handleConfirmOrder = () => {
-        console.log("happy")
         this.setState({ confirmCheckout: true })
     }
 
 
     render() {
-        console.log("Current User: ", this.state.currentUser)
         return (
             <div>
                 <Header
