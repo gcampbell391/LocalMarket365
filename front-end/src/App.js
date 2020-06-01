@@ -20,6 +20,22 @@ class App extends React.Component {
   }
 
 
+  componentDidMount() {
+    const md5 = require('md5');
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const api_key = "g0td0myfl3tz9lsoc29yzr38"
+    const sig = md5(`${api_key}9albn7kas0z6holeinfo`)
+    const fetchUrl = `https://www.dgcoursereview.com/api_test/?key=${api_key}&mode=holeinfo&id=11&sig=${sig}`
+    console.log("Sig", fetchUrl)
+
+    fetch(proxyurl + fetchUrl)
+      .then(resp => resp.json())
+      .then(data => {
+        console.log("Course Info:", data)
+      })
+  }
+
+
 
   //Handles Log authenication 
   handleLogInBtn = (event) => {

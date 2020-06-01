@@ -32,14 +32,14 @@ export default class Body extends Component {
 
 
 
-                <div className="cart-div"  >
+                <div className="cart-div">
                     {this.props.viewCart ? <Cart
                         removeItemFromCart={this.props.removeItemFromCart}
                         renderCartItems={this.props.renderCartItems}
                         handleAddQuantityBtn={this.props.handleAddQuantityBtn}
                         // handleCheckoutBtn = { this.props.handleCheckoutBtn}
                         handleConfirmOrder={this.props.handleConfirmOrder}
-                    /> : null}
+                    /> : ""}
                 </div>
 
                 {
